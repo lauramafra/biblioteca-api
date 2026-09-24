@@ -3,6 +3,9 @@
 --  Execução:  mysql -u root -p < banco.sql
 -- =====================================================================
 
+-- Garante que os acentos sejam lidos corretamente
+SET NAMES utf8mb4;
+
 CREATE DATABASE IF NOT EXISTS biblioteca
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
