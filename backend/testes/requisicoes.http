@@ -1,0 +1,127 @@
+### Requisições para testar a API manualmente
+### Extensão "REST Client" (VS Code). Também podem ser copiadas para Postman, Insomnia ou Thunder Client.
+### Antes de testar, execute o banco.sql e inicie o servidor (npm start).
+
+@url = http://localhost:3000
+
+### ---------------------------------------------------------------- LIVROS
+
+### Listar livros
+GET {{url}}/livros
+
+### Consultar um livro
+GET {{url}}/livros/1
+
+### Pesquisar por título
+GET {{url}}/livros/busca/dom
+
+### Listar ordenados (campo: id, titulo, autor, isbn, ano_publicacao, categoria, quantidade | ordem: asc, desc)
+GET {{url}}/livros/ordenados?campo=ano_publicacao&ordem=desc
+
+### Cadastrar livro
+POST {{url}}/livros
+Content-Type: application/json
+
+{
+  "titulo": "O Alienista",
+  "autor": "Machado de Assis",
+  "isbn": "978-85-359-1234-5",
+  "ano_publicacao": 1882,
+  "categoria": "Romance",
+  "quantidade": 3
+}
+
+### Editar livro
+PUT {{url}}/livros/1
+Content-Type: application/json
+
+{
+  "titulo": "Dom Casmurro",
+  "autor": "Machado de Assis",
+  "isbn": "9788535914849",
+  "ano_publicacao": 1899,
+  "categoria": "Clássico",
+  "quantidade": 2
+}
+
+### Excluir livro
+DELETE {{url}}/livros/11
+
+### --------------------------------------------------------------- USUÁRIOS
+
+### Listar usuários
+GET {{url}}/usuarios
+
+### Consultar um usuário
+GET {{url}}/usuarios/1
+
+### Cadastrar usuário
+POST {{url}}/usuarios
+Content-Type: application/json
+
+{
+  "nome": "Paulo Santos",
+  "cpf": "935.411.347-80",
+  "email": "paulo.santos@email.com",
+  "telefone": "(47) 99999-1234"
+}
+
+### Editar usuário
+PUT {{url}}/usuarios/1
+Content-Type: application/json
+
+{
+  "nome": "Maria Silva Souza",
+  "cpf": "52998224725",
+  "email": "maria.silva@email.com",
+  "telefone": "47991110001"
+}
+
+### Excluir usuário
+DELETE {{url}}/usuarios/6
+
+### ------------------------------------------------------------ EMPRÉSTIMOS
+
+### Listar empréstimos (filtros opcionais: status=ativo|devolvido|atrasado, usuario_id, livro_id)
+GET {{url}}/emprestimos
+
+### Listar apenas os atrasados
+GET {{url}}/emprestimos?status=atrasado
+
+### Consultar um empréstimo
+GET {{url}}/emprestimos/1
+
+### Registrar empréstimo (prazo padrão: 14 dias)
+POST {{url}}/emprestimos
+Content-Type: application/json
+
+{
+  "livro_id": 5,
+  "usuario_id": 5
+}
+
+### Registrar empréstimo com data prevista
+POST {{url}}/emprestimos
+Content-Type: application/json
+
+{
+  "livro_id": 7,
+  "usuario_id": 1,
+  "data_prevista_devolucao": "2030-12-31"
+}
+
+### Renovar prazo
+PUT {{url}}/emprestimos/1
+Content-Type: application/json
+
+{
+  "data_prevista_devolucao": "2030-12-31"
+}
+
+### Registrar devolução
+PUT {{url}}/emprestimos/1
+Content-Type: application/json
+
+{
+  "status": "devolvido"
+}
