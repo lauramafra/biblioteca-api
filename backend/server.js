@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 const express = require('express');
 const cors = require('cors');
 const db = require('./db');
@@ -23,6 +23,7 @@ app.get('/', async (req, res, next) => {
 // Rotas
 app.use('/livros', require('./routes/livros'));
 app.use('/usuarios', require('./routes/usuarios'));
+app.use('/emprestimos', require('./routes/emprestimos'));
 
 // Rota não encontrada
 app.use((req, res, next) => {

@@ -1,5 +1,5 @@
 // Conexão com o MySQL (pool de conexões)
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({
