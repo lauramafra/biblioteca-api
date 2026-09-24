@@ -22,6 +22,7 @@ app.get('/', async (req, res, next) => {
 
 // Rotas
 app.use('/livros', require('./routes/livros'));
+app.use('/usuarios', require('./routes/usuarios'));
 
 // Rota não encontrada
 app.use((req, res, next) => {
